@@ -59,6 +59,16 @@ Before composing the image prompt, extract and lock:
 
 The prompt must state the composition lock before the mood adjectives. A result with knitted texture but the wrong hero structure, color roles, and information frame is not a successful style match.
 
+## Reference treatment
+
+Determine how much freedom the visual input allows before composing the prompt:
+
+- **Opaque full-poster reference with a background and finished layout:** use a strict reference lock by default. Preserve the canvas ratio, crop, background color, hero bounding box, title scale, information zones, and border logic. Convert the material into knit, yarn, embroidery, or fabric patch, but do not freely add unrelated objects or delete layout elements.
+- **Full-poster reference used as a style input:** preserve its structural skeleton and color roles, but replace its wording, logo, dates, and brand identity with the user's content. Do not copy the reference's exact text or branding.
+- **Full-poster image used as an edit target:** preserve its visible information architecture and source content by default, including labels, logos, signatures, captions, and footer bars. Repositioning is allowed only within the requested restyle, not silent deletion.
+- **Transparent PNG or isolated subject:** use flexible composition. Preserve the subject's silhouette, pose, count, and important colors, then design a new knit background, patch, border, and information layout around it. Add no more than a few relevant micro-elements when they help the theme.
+- An explicit user request such as “重新排版”, “重做背景和边框”, or “自由发挥版式” overrides the strict reference lock.
+
 ## Route the request
 
 1. If the user supplies copy but no image, use **copy-first**.
@@ -91,6 +101,17 @@ Parse the input into a small hierarchy before prompting:
 
 Choose one central composition from the attached visual inputs and recreate its structural logic: a central patch, badge, or framed hero is required when the visual inputs establish one. Do not make the result merely “text on knitted fabric”. Keep the copy sparse enough for a poster and make the main title the largest knitted element. If no brand or footer is provided, retain the visual system's information zones as quiet space, stitch marks, or restrained non-readable detail rather than fabricating a brand system.
 
+When no visual input is supplied, choose the composition from the user's content rather than applying one fixed template:
+
+- short slogan or compact mood phrase: consider a border badge; use a thematic letter border only when the phrase is short and the border improves the composition;
+- concrete person, animal, object, or action: make the subject the central fabric patch and add at most 1–3 small related stitched motifs when they reinforce the theme;
+- educational, list, numbered, or typeface-sharing content: use a soft patch or stacked-title layout and do not add a letter border by default;
+- seasonal, lifestyle, or abstract themes: use a central patch plus a restrained number of relevant motifs; add a letter border only if it supports the title.
+
+If the user specifies a layout, border, palette, or object, follow that instruction over this inference. Do not add decorative objects merely to fill empty space.
+
+For copy-first color selection, user-provided colors take priority. Otherwise infer a controlled 2–4 color role map: textile background, central subject or patch, accent/border, and optional cream/white neutral. Use the inferred colors as a hierarchy, not as evenly distributed swatches.
+
 Keep the title block restrained: the readable title and subtitle together should normally occupy roughly one-fifth to one-third of the poster height and should not fill the central badge edge-to-edge. Let the patch, fabric fibers, and surrounding letter border carry part of the visual weight.
 
 For the default restrained treatment, keep the main title itself around 15–22% of the canvas height and the subtitle clearly smaller. If the user asks for a smaller title, reduce it by one visual step while preserving legibility and a visible textile field around the glyphs.
@@ -99,13 +120,13 @@ When a decorative letter border is present, extract a short thematic wordmark fr
 
 ## Image-first mode
 
-This is a restyle-and-recompose operation, not a filter. Preserve the subject's identity, silhouette, pose, and key recognizable details. Rebuild the full-bleed textile background and freely redesign the surrounding frame, border, typography, and information placement to fit the knit-poster system.
+This is a material restyle with a conditional amount of recomposition, not a filter. Preserve the subject's identity, silhouette, pose, and key recognizable details. Use the reference-treatment rules above to decide whether the layout is locked or flexible.
 
 Default behavior:
 
 - convert the subject into raised yarn, embroidery, or a fabric patch;
-- preserve useful source color relationships, but harmonize them into a 2–4 color palette;
-- choose a central patch or border-badge composition;
+- preserve useful source color relationships; for an opaque full-poster reference, keep the reference's background color and color-role hierarchy rather than inventing a new palette;
+- for a transparent PNG, choose a central patch or border-badge composition and add only a few relevant micro-elements when useful;
 - keep the source's subject as the visual anchor;
 - preserve the source poster's visible text blocks, metadata, logos, signatures, and footer structure by default; convert them into the same textile treatment. Treat the wording as approximate unless the user supplies exact copy separately.
 
@@ -123,6 +144,7 @@ Visual inputs: <primary composition anchor; optional secondary palette/material 
 Input image: <edit-target role and invariants, for image-first>
 Subject: <main title or preserved subject>
 Composition lock: <canvas, editorial frame, hero bounding box, chosen mode, title placement>
+Reference treatment: <strict full-poster lock, or flexible transparent-subject composition; explicit user override if present>
 Source information: <for image-first, preserve existing labels, logo/signature areas, captions, and footer unless explicitly removed>
 Style/medium: tactile knitted textile, raised yarn, embroidery, fabric patch
 Lighting/mood: soft diffused macro light, gentle textile shadows
@@ -149,7 +171,7 @@ $tactile-knit-poster
 
 Attached images are analyzed automatically. Never expose attachment numbers from one particular example set in the reusable template.
 
-For image-first edits, repeat the invariants in plain language: change the background, material, and poster layout; keep the main subject recognizable. For attached style inputs, explicitly say internally: use the images for composition and material; do not copy their text, logo, or brand identity.
+For image-first edits, repeat the invariants in plain language: preserve the main subject; use strict layout/color treatment for an opaque full-poster reference and flexible composition for a transparent PNG; do not remove source information unless asked. For attached style inputs, explicitly say internally: use the images for composition and material; do not copy their text, logo, or brand identity.
 
 ## Quality gate
 
@@ -166,6 +188,8 @@ Before returning the result, check:
 - the background knit is finer than the foreground lettering when the user asks for a thinner background yarn;
 - the composition matches the reference's structural skeleton: header/footer zones, central hero mass, and chosen patch or border logic;
 - the color roles match the reference relationship, not merely the individual color names;
+- an opaque full-poster reference keeps its background color, major layout, hero mass, and information zones unless the user explicitly requests recomposition;
+- a transparent PNG keeps its isolated subject recognizable and adds no more than a few relevant decorative elements;
 - in copy-first mode, optional header/footer elements appear only when supplied or explicitly free-filled;
 - in image-first mode, existing source header/footer/label/logo zones are not silently deleted;
 - the image-first subject is still recognizable;

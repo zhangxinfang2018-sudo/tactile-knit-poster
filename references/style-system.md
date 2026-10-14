@@ -28,6 +28,16 @@ For every reference set, identify:
 
 If attached images are available in the conversation, send them to the image tool as visual inputs. Do not rely on a text-only paraphrase when the desired result depends on a specific layout. For style-only references, use them for visual grammar only; do not reproduce their wording, logo, or brand identity. For an image-first edit target, preserve the target's own visible information architecture under the image-first invariants below unless the user explicitly asks to remove or replace it.
 
+## Reference treatment
+
+Use the source image's visual format to decide how strictly to follow it:
+
+- An opaque full-poster image with a background color and finished layout is a **strict reference** by default. Keep its crop, background color, hero position and scale, title hierarchy, information zones, and border logic. Apply the knit/yarn transformation without freely adding unrelated elements.
+- If that full poster is only a style input, keep its layout and color roles but replace its wording, dates, logos, and brand identity with the user's content.
+- If that full poster is the edit target, keep its visible labels, signatures, logos, captions, and footer content by default while allowing a requested textile restyle.
+- A transparent PNG or isolated subject is a **flexible composition** by default. Preserve the subject, then design the knit background and layout around it. A few relevant motifs or a thematic border may be added, but avoid decorative clutter.
+- Explicit instructions such as “重新排版” or “自由发挥版式” override the strict reference behavior.
+
 ## Visual identity
 
 The image should feel like a photographed textile artifact: a soft knitted surface with raised yarn lettering and hand-made patch construction. The material is the design system, not a surface filter applied after a normal poster is made.
@@ -146,9 +156,9 @@ You may change:
 - the decorative metadata and footer may be restyled, repositioned, or replaced when the user supplies new copy or explicitly requests a different information hierarchy;
 - the overall crop, as long as the subject remains the anchor.
 
-If the source is a complete poster, extract its main visual subject and rebuild the poster around that subject. Do not preserve the original layout by default.
+If the source is a complete poster, use the strict reference behavior by default: preserve its background color, crop, major layout, hero mass, border logic, and information zones while converting the material. Recompose only when the user asks for a new layout. “Rebuild the layout” means changing the visual hierarchy deliberately, not silently deleting the source's information.
 
-“Rebuild the layout” means recompose the visual hierarchy, not silently delete the source's information. Retain the source labels, brand/signature areas, captions, and footer content while allowing their placement and textile treatment to change.
+If the source is a transparent PNG, preserve the isolated subject and use flexible composition to create the surrounding textile background, border, and editorial layout. Add only a few theme-relevant motifs when they improve the result.
 
 ## Negative prompt language
 
