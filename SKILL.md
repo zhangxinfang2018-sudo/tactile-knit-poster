@@ -22,6 +22,7 @@ Read [references/style-system.md](references/style-system.md) when composing the
 - When a letter border is used, derive its decorative wordmark or letterforms from the user's theme or title; never use an unrelated generic brand-like word.
 - If the user requests more whitespace, shrink the complete hero group and keep every element at least 10% farther from each canvas edge than the previous draft.
 - Never hard-code sample brand names, logos, dates, or captions from the references.
+- In image-first mode, preserve the edit target's existing visible information architecture by default: headers, labels, logos, signatures, captions, footer bars, and text blocks remain part of the poster unless the user explicitly asks to remove or replace them. This rule applies to the edit target, not to style-only reference images.
 - Do not turn the task into an HTML/SVG layout, a carousel, or a batch of variants unless the user explicitly changes the scope.
 - If the user supplies exact copy, quote it verbatim in the image prompt and preserve its hierarchy. Do not invent important wording.
 
@@ -76,6 +77,8 @@ Top-left metadata, top-right signature marks, and bottom three-part footers are 
 - If the user does not supply it and does not ask for it, omit the zone or use quiet stitch marks/non-readable texture. Do not force fake headers, logos, or footers into every poster.
 - If the user explicitly allows free invention, add only short contextual microcopy related to the subject, such as a season, collection label, or poster category. Keep it secondary and never copy a reference brand.
 
+For **image-first** edits, the rule is different: existing editorial zones in the edit target are preserved by default, even when the user does not transcribe them separately. Keep their presence, relative role, and approximate placement while restyling them as textile elements. Remove, replace, or freely rewrite them only when the user explicitly requests that change. If exact wording matters, ask for or use a user-provided transcription because generated lettering may not be exact.
+
 ## Copy-first mode
 
 Parse the input into a small hierarchy before prompting:
@@ -104,7 +107,7 @@ Default behavior:
 - preserve useful source color relationships, but harmonize them into a 2–4 color palette;
 - choose a central patch or border-badge composition;
 - keep the source's subject as the visual anchor;
-- treat source text as reference only unless exact copy is supplied separately.
+- preserve the source poster's visible text blocks, metadata, logos, signatures, and footer structure by default; convert them into the same textile treatment. Treat the wording as approximate unless the user supplies exact copy separately.
 
 Do not add unrelated characters, props, slogans, or sample logos merely to make the image busier.
 
@@ -120,6 +123,7 @@ Visual inputs: <primary composition anchor; optional secondary palette/material 
 Input image: <edit-target role and invariants, for image-first>
 Subject: <main title or preserved subject>
 Composition lock: <canvas, editorial frame, hero bounding box, chosen mode, title placement>
+Source information: <for image-first, preserve existing labels, logo/signature areas, captions, and footer unless explicitly removed>
 Style/medium: tactile knitted textile, raised yarn, embroidery, fabric patch
 Lighting/mood: soft diffused macro light, gentle textile shadows
 Color-role map: background=<...>; hero=<...>; accent=<...>; text/neutral=<...>
@@ -162,7 +166,8 @@ Before returning the result, check:
 - the background knit is finer than the foreground lettering when the user asks for a thinner background yarn;
 - the composition matches the reference's structural skeleton: header/footer zones, central hero mass, and chosen patch or border logic;
 - the color roles match the reference relationship, not merely the individual color names;
-- optional header/footer elements appear only when supplied or explicitly free-filled;
+- in copy-first mode, optional header/footer elements appear only when supplied or explicitly free-filled;
+- in image-first mode, existing source header/footer/label/logo zones are not silently deleted;
 - the image-first subject is still recognizable;
 - the composition has generous margins and a calm editorial balance;
 - there is no accidental extra text, watermark, or copied sample branding;

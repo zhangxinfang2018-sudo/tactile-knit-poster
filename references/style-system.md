@@ -26,7 +26,7 @@ For every reference set, identify:
 - role of each color, not just the color names;
 - fabric stitch direction, yarn thickness, relief, and camera distance.
 
-If attached images are available in the conversation, send them to the image tool as visual inputs. Do not rely on a text-only paraphrase when the desired result depends on a specific layout. Use them for visual grammar only; do not reproduce their wording, logo, or brand identity.
+If attached images are available in the conversation, send them to the image tool as visual inputs. Do not rely on a text-only paraphrase when the desired result depends on a specific layout. For style-only references, use them for visual grammar only; do not reproduce their wording, logo, or brand identity. For an image-first edit target, preserve the target's own visible information architecture under the image-first invariants below unless the user explicitly asks to remove or replace it.
 
 ## Visual identity
 
@@ -78,7 +78,7 @@ When the user requests more whitespace, scale down the complete central group ra
 - A small descriptor or date may sit below the central artwork when supplied or explicitly free-filled.
 - A three-part footer may run along the bottom edge when the user provides footer copy or asks for free editorial filling.
 
-When the user does not request these zones, omit them or use quiet stitch marks/non-readable texture. Do not force a header, logo, or footer into every output. When free filling is explicitly allowed, use short contextual microcopy tied to the poster subject; never reproduce a recognizable reference brand or random slogan.
+In copy-first mode, when the user does not request these zones, omit them or use quiet stitch marks/non-readable texture. Do not force a header, logo, or footer into every new output. When free filling is explicitly allowed, use short contextual microcopy tied to the poster subject; never reproduce a recognizable reference brand or random slogan. In image-first mode, retain the edit target's existing header, logo/signature, and footer zones by default; remove or replace them only on explicit instruction.
 
 ### Mode A: soft patch / stacked title
 
@@ -136,16 +136,19 @@ When a source image is supplied, preserve:
 - the important pose or orientation;
 - the essential internal color relationships when they carry meaning;
 - any user-specified text, reproduced verbatim.
+- the source poster's visible editorial information architecture by default: header labels, brand/signature marks, captions, footer bars, and text blocks remain present unless the user asks to remove or replace them;
 
 You may change:
 
 - the background fabric and stitch direction;
 - the framing, patch shape, and border;
 - the palette when harmonization is needed;
-- the decorative metadata and footer when the user supplies new copy;
+- the decorative metadata and footer may be restyled, repositioned, or replaced when the user supplies new copy or explicitly requests a different information hierarchy;
 - the overall crop, as long as the subject remains the anchor.
 
 If the source is a complete poster, extract its main visual subject and rebuild the poster around that subject. Do not preserve the original layout by default.
+
+“Rebuild the layout” means recompose the visual hierarchy, not silently delete the source's information. Retain the source labels, brand/signature areas, captions, and footer content while allowing their placement and textile treatment to change.
 
 ## Negative prompt language
 
