@@ -26,7 +26,7 @@ cp -R . ~/.codex/skills/tactile-knit-poster/
 如果你是从 GitHub 克隆：
 
 ```bash
-git clone https://github.com/<你的账号>/tactile-knit-poster.git ~/.codex/skills/tactile-knit-poster
+git clone https://github.com/zhangxinfang2018-sudo/tactile-knit-poster.git ~/.codex/skills/tactile-knit-poster
 ```
 
 安装后重新打开 Codex，或新建一个对话，让 skill 被重新加载。
