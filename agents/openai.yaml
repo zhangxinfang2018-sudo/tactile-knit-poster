@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tactile Knit Poster"
+  short_description: "Generate one knit-yarn poster or restyle a supplied image"
+  default_prompt: "Use $tactile-knit-poster to create one 4:5 knit-yarn poster from my copy or supplied image."
+
+policy:
+  allow_implicit_invocation: true
