@@ -59,6 +59,17 @@ Before composing the image prompt, extract and lock:
 
 The prompt must state the composition lock before the mood adjectives. A result with knitted texture but the wrong hero structure, color roles, and information frame is not a successful style match.
 
+## Material consistency across a series
+
+When the user compares several outputs or references and identifies some as successful and another as an outlier, treat the successful images as the accepted material anchors. Do not average all images into a compromise texture.
+
+- Use one accepted image as the primary material anchor and, when useful, a second accepted image to confirm the yarn family, loop scale, and relief.
+- Keep the background at a medium-gauge knitted scale by default: visible V-shaped loops, moderate spacing, soft fiber fuzz, and gentle irregularity.
+- Use the same yarn family, ply feel, stitch density, relief, and diffuse lighting across the series. Color may change, but material scale should remain coherent.
+- Keep foreground lettering, borders, or appliqué about 1.2–1.5 times thicker than the background, not an entirely different gauge.
+- Do not automatically turn the background into fine, tight, tiny loops. Move down only one material step when the user explicitly asks for a thinner background.
+- For a strict full-poster reference, lock layout and color to that reference while following the accepted series material anchor for yarn scale, unless the user explicitly asks to match that source's texture exactly.
+
 ## Reference treatment
 
 Determine how much freedom the visual input allows before composing the prompt:
@@ -153,7 +164,7 @@ Text (verbatim): "<exact copy>"
 Text scale: restrained; hero object and textile remain visually dominant
 Border logic: <oversized thematic yarn letters wrapping the perimeter, derived from the subject/title when a letter border is used>
 Whitespace: <default safe area, or at least 10% more inset on every side when requested>
-Background knit: <fine-gauge/thinner yarn background; foreground lettering may remain thicker>
+Background knit: <medium-gauge yarn background with visible loops and shared series material; only one step finer when explicitly requested; foreground lettering may remain 1.2–1.5x thicker>
 Editorial extras: <omit unless supplied; or short contextual microcopy if free-fill is explicitly allowed>
 Constraints: one finished poster; use attached images for visual grammar only; preserve subject in image-first mode
 Avoid: flat vector, giant oversized typography, printed-looking text, plain cord border, plastic, chrome, random extra copy, fake logos
@@ -185,7 +196,10 @@ Before returning the result, check:
 - if a border badge is selected, the border is visibly made from oversized yarn letterforms wrapping around the perimeter, not a generic cord or outline;
 - if a letter border is present, its wordmark or letterforms are thematically connected to the user request;
 - requested whitespace is visible on all four sides and the hero group is not pressed against the canvas edges;
-- the background knit is finer than the foreground lettering when the user asks for a thinner background yarn;
+- the background uses a coherent medium-gauge knit with visible loops, fibers, and moderate relief;
+- the foreground lettering or patch edge is only moderately thicker than the background, roughly 1.2–1.5 times its visual yarn weight;
+- the background is not an ultra-fine, tight, uniform micro-knit unless the user explicitly requested that material step;
+- when the user identifies accepted and rejected references, the material matches the accepted anchors rather than averaging in the outlier;
 - the composition matches the reference's structural skeleton: header/footer zones, central hero mass, and chosen patch or border logic;
 - the color roles match the reference relationship, not merely the individual color names;
 - an opaque full-poster reference keeps its background color, major layout, hero mass, and information zones unless the user explicitly requests recomposition;
