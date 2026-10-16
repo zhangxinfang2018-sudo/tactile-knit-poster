@@ -38,6 +38,12 @@ Use the source image's visual format to decide how strictly to follow it:
 - A transparent PNG or isolated subject is a **flexible composition** by default. Preserve the subject, then design the knit background and layout around it. A few relevant motifs or a thematic border may be added, but avoid decorative clutter.
 - Explicit instructions such as “重新排版” or “自由发挥版式” override the strict reference behavior.
 
+## Material consistency across a series
+
+When the user identifies some images as successful and another as an outlier, use the successful images as the material standard. Select one accepted image as the primary texture anchor and optionally one more as confirmation; do not average the outlier into the result.
+
+The default shared material profile is medium-gauge knit: visible V-shaped loops, moderate stitch spacing, soft fiber fuzz, natural small irregularities, and gentle relief. Keep the background and foreground in the same yarn family. Foreground lettering, borders, and appliqué may be about 1.2–1.5 times thicker, but should not look like a different manufacturing process. Only make the background fine-gauge and tightly packed when the user explicitly asks for a thinner background, and then reduce the material by one step rather than switching to a micro-knit.
+
 ## Visual identity
 
 The image should feel like a photographed textile artifact: a soft knitted surface with raised yarn lettering and hand-made patch construction. The material is the design system, not a surface filter applied after a normal poster is made.
@@ -60,7 +66,7 @@ The image should feel like a photographed textile artifact: a soft knitted surfa
 - Keep the readable title block restrained. Start with the textile badge, border letters, and fabric field as the dominant shapes; let the title occupy roughly one-fifth to one-third of the poster height, not most of the canvas.
 - Do not enlarge the Chinese glyphs until they touch the patch edge. Preserve visible textile around the title and allow the material to carry visual weight.
 - As a default, keep the main title around 15–22% of the canvas height and make the subtitle clearly smaller. The central badge and thematic perimeter lettering should remain the dominant shapes.
-- If the background feels too heavy, use a finer-gauge knit with thinner yarn and smaller, tighter loops; keep the main lettering and border visibly thicker so the hierarchy survives.
+- Use medium-gauge background knit as the default: visible loops, moderate spacing, soft fuzz, and enough relief to read at normal viewing size. If the user explicitly asks for a thinner background, reduce the yarn and loop scale by one step while keeping the same yarn family; do not create an ultra-fine, tight, uniform micro-knit.
 - Use a short amount of copy. If the user supplies long copy, create clear title/subtitle hierarchy rather than shrinking everything.
 
 ### Color
